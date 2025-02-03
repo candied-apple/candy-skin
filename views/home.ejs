@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Welcome to Minecraft Skin System</h1>
+        <p class="lead">Manage your Minecraft skins and capes with ease</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">New User?</h5>
+                        <p class="card-text">Create an account to manage your Minecraft skins and capes.</p>
+                        <a href="/register" class="btn btn-primary">Register</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Already Registered?</h5>
+                        <p class="card-text">Login to access your account and manage your textures.</p>
+                        <a href="/login" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h3>How to Use</h3>
+            <ol class="text-start">
+                <li>Register an account or login if you already have one</li>
+                <li>Upload your Minecraft skin and cape</li>
+                <li>Add this server to your Minecraft launcher using AuthLib-Injector:</li>
+                <code>-javaagent:authlib-injector.jar=<%= process.env.DOMAIN %>/api/yggdrasil</code>
+            </ol>
+        </div>
+    </div>
+</div> 

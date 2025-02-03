@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-gear-fill me-2"></i>Profile Settings
+            </div>
+            <div class="card-body">
+                <form action="/profile/update" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-person-badge me-2"></i>Username
+                        </label>
+                        <input type="text" class="form-control" value="<%= user.username %>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-envelope me-2"></i>Email
+                        </label>
+                        <input type="email" class="form-control" name="email" value="<%= user.email %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-key me-2"></i>New Password
+                        </label>
+                        <input type="password" class="form-control" name="password" 
+                               placeholder="Leave blank to keep current password">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-key-fill me-2"></i>Confirm New Password
+                        </label>
+                        <input type="password" class="form-control" name="confirmPassword"
+                               placeholder="Confirm new password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-2"></i>Update Profile
+                    </button>
+                </form>
+
+                <div class="danger-zone">
+                    <h5 class="text-danger mb-3">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Danger Zone
+                    </h5>
+                    <p class="text-secondary mb-3">
+                        Once you delete your account, there is no going back. Please be certain.
+                    </p>
+                    <button class="btn btn-danger" onclick="confirmDelete()">
+                        <i class="bi bi-trash3 me-2"></i>Delete Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-info-circle-fill me-2"></i>Account Information
+            </div>
+            <div class="card-body">
+                <p>
+                    <i class="bi bi-fingerprint me-2"></i>
+                    <strong>UUID:</strong><br>
+                    <span class="text-muted"><%= user.uuid %></span>
+                </p>
+                <p>
+                    <i class="bi bi-person-fill me-2"></i>
+                    <strong>Skin Model:</strong><br>
+                    <span class="text-secondary"><%= user.skinModel === 'alex' ? 'Slim (Alex)' : 'Classic (Steve)' %></span>
+                </p>
+                <p>
+                    <i class="bi bi-file-earmark-image me-2"></i>
+                    <strong>Has Skin:</strong>
+                    <% if (user.skin) { %>
+                        <i class="bi bi-check-circle-fill text-success ms-2"></i>
+                    <% } else { %>
+                        <i class="bi bi-x-circle-fill text-danger ms-2"></i>
+                    <% } %>
+                </p>
+                <p>
+                    <i class="bi bi-file-earmark me-2"></i>
+                    <strong>Has Cape:</strong>
+                    <% if (user.cape) { %>
+                        <i class="bi bi-check-circle-fill text-success ms-2"></i>
+                    <% } else { %>
+                        <i class="bi bi-x-circle-fill text-danger ms-2"></i>
+                    <% } %>
+                </p>
+                <a href="/dashboard" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete() {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        fetch('/profile/delete', {
+            method: 'POST',
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/';
+            } else {
+                alert('Failed to delete account');
+            }
+        })
+        .catch(error => {
+            console.error('Delete error:', error);
+            alert('Failed to delete account');
+        });
+    }
+}
+</script> 
