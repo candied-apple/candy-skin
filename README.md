@@ -25,25 +25,13 @@ Ensure you have the following installed on your system:
 
 3. **Set up environment variables:**
 
-   Copy the 
-
-.env.example
-
- file to 
-
-.env
-
- and update the values as needed:
+   Copy the `.env.example` file to `.env` and update the values as needed:
 
    ```sh
    cp .env.example .env
    ```
 
-   Edit the 
-
-.env
-
- file to match your configuration:
+   Edit the `.env` file to match your configuration:
 
    ```env
    PORT=3000
@@ -67,11 +55,7 @@ Ensure you have the following installed on your system:
    npm start
    ```
 
-   The server should now be running on the port specified in your 
-
-.env
-
- file (default is 3000).
+   The server should now be running on the port specified in your `.env` file (default is 3000).
 
 ## Usage
 
@@ -82,15 +66,7 @@ Ensure you have the following installed on your system:
 ## Additional Information
 
 - The project uses MongoDB for data storage. Ensure your MongoDB instance is running and accessible.
-- The project uses RSA keys for signing and verifying tokens. The keys are generated and stored in the 
-
-keys
-
- directory.
-- The project serves static files (textures) from the 
-
-textures
-
- directory.
+- The project uses RSA keys for signing and verifying tokens. The keys are generated and stored in the `keys` directory.
+- The project serves static files (textures) from the `textures` directory.
 
 For any issues or contributions, please refer to the [GitHub repository](https://github.com/candied-apple/candy-skin).
