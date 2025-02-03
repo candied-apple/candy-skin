@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 d-flex flex-column">
+    <div class="col-md-4">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="bi bi-info-circle-fill me-2"></i>Profile Information
@@ -106,12 +106,13 @@
             </div>
         </div>
 
-        <div class="card flex-grow-1">
+        <!-- Add the 3D skin viewer -->
+        <div class="card">
             <div class="card-header">
                 <i class="bi bi-person-fill me-2"></i>3D Skin Viewer
             </div>
-            <div class="card-body d-flex align-items-center justify-content-center">
-                <canvas id="skin-viewer"></canvas>
+            <div class="card-body">
+                <canvas id="skin-viewer" width="300" height="300"></canvas>
             </div>
         </div>
     </div>
@@ -227,17 +228,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Enable auto-rotate
         skinViewer.autoRotate = true;
-
-        function resizeCanvas() {
-            const container = canvas.parentNode;
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
-            skinViewer.width = canvas.width;
-            skinViewer.height = canvas.height;
-        }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
 
     } catch (error) {
         console.error('Skin viewer initialization error:', error);
