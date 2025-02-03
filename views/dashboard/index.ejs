@@ -91,8 +91,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card">
+    <div class="col-md-4 d-flex flex-column">
+        <div class="card mb-4">
             <div class="card-header">
                 <i class="bi bi-info-circle-fill me-2"></i>Profile Information
             </div>
@@ -103,6 +103,15 @@
                 <a href="/profile" class="btn btn-outline-primary w-100">
                     <i class="bi bi-gear me-2"></i>Edit Profile
                 </a>
+            </div>
+        </div>
+
+        <div class="card flex-grow-1">
+            <div class="card-header">
+                <i class="bi bi-person-fill me-2"></i>3D Skin Viewer
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <canvas id="skin-viewer"></canvas>
             </div>
         </div>
     </div>
@@ -176,4 +185,67 @@ async function removeCape() {
         alert('Failed to remove cape');
     }
 }
-</script> 
+</script>
+
+<!-- Replace the script section with: -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.0.0-alpha.1/bundles/skinview3d.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('skin-viewer');
+    
+    if (!canvas || !canvas.getContext) {
+        console.error('Canvas not supported');
+        return;
+    }
+
+    try {
+        const skinViewer = new skinview3d.SkinViewer({
+            canvas: canvas,
+            width: 300,
+            height: 300,
+            model: '<%= user.skinModel === "alex" ? "slim" : "default" %>'
+        });
+
+        // Load skin if exists
+        if ('<%= user.skin %>') {
+            skinViewer.loadSkin('<%= process.env.DOMAIN %>/textures/<%= user.skin %>');
+        }
+
+        // Load cape if exists
+        if ('<%= user.cape %>') {
+            skinViewer.loadCape('<%= process.env.DOMAIN %>/textures/<%= user.cape %>');
+        }
+
+        // Configure viewer
+        skinViewer.camera.position.set(15, 2, 35);
+        skinViewer.controls.enableRotate = true;
+        skinViewer.controls.enableZoom = true;
+        
+        // Add walking animation
+        skinViewer.animation = new skinview3d.WalkingAnimation();
+        
+        // Enable auto-rotate
+        skinViewer.autoRotate = true;
+
+        function resizeCanvas() {
+            const container = canvas.parentNode;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            skinViewer.width = canvas.width;
+            skinViewer.height = canvas.height;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+    } catch (error) {
+        console.error('Skin viewer initialization error:', error);
+        canvas.style.display = 'none';
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'alert alert-danger';
+        errorMsg.textContent = '3D viewer failed to load. Please ensure WebGL is enabled in your browser.';
+        canvas.parentNode.appendChild(errorMsg);
+    }
+});
+</script>
