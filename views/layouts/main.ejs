@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Skin System</title>
+    <title>candyskin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -139,13 +139,21 @@
         .text-muted {
             color: var(--text-muted) !important;
         }
+
+        footer {
+            background-color: var(--bg-darker);
+            color: var(--text-secondary);
+            padding: 1rem 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark mb-4">
         <div class="container">
             <a class="navbar-brand minecraft-font" href="/">
-                <i class="bi bi-box"></i> MC Skin System
+                <i class="bi bi-box"></i> candyskin
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -187,6 +195,20 @@
         <%- body %>
     </div>
 
+    <footer>
+        <div class="container">
+            <p>&copy; <%= new Date().getFullYear() %> candyskin by candiedapple. All rights reserved.</p>
+            <div class="mt-2">
+                <a href="https://discord.gg/luthien" class="text-secondary me-3">
+                    <i class="bi bi-discord"></i> Discord
+                </a>
+                <a href="https://github.com/candied-apple" class="text-secondary">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>

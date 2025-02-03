@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
     
     res.json({
         meta: {
-            serverName: "Minecraft Skin System",
-            implementationName: "Custom Yggdrasil",
+            serverName: "Candy Skin Server",
+            implementationName: "candyskin",
             implementationVersion: "1.0.0"
         },
         skinDomains: [domain],
