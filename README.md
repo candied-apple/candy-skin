@@ -13,7 +13,7 @@ Ensure you have the following installed on your system:
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/yourusername/candy-skin.git
+   git clone https://github.com/candied-apple/candy-skin.git
    cd candy-skin
    ```
 
